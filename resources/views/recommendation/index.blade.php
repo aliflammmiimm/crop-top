@@ -534,36 +534,107 @@
 
         /* History Strip */
         .history-card {
-            margin-top: 22px;
+            margin-top: 24px;
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 18px;
+            border-radius: 14px;
+            box-shadow: var(--shadow-card);
+            padding: 18px 20px;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .history-count {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-weight: 600;
         }
 
         .history-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 10px;
         }
 
         .history-chip {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 11px;
-            border-radius: 8px;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
             border: 1px solid var(--border);
             background: #f8fafc;
             text-decoration: none;
             color: var(--text-main);
-            font-size: 12px;
-            transition: border-color 0.15s;
+            transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
+            min-width: 0;
         }
 
         .history-chip:hover {
             border-color: var(--green-primary);
+            background: #ffffff;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+        }
+
+        .history-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .history-thumb {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #ecfdf5;
+            border: 1px solid var(--border);
+        }
+
+        .history-meta {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .history-title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .history-crop {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .history-time {
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .history-params {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Modal */
@@ -1099,10 +1170,10 @@
                                 <div class="rank-info">
                                     <div class="rank-sub">Peringkat #{{ $crop['Rank_WP'] }} · {{ $crop['kode'] }}</div>
                                     <div class="rank-name">{{ $crop['nama_id'] }} ({{ ucfirst($crop['label']) }})</div>
-                                    <div class="scores-line" style="margin-top:2px;">
-                                        TOPSIS: <strong>{{ number_format($crop['V_TOPSIS'], 3) }}</strong>
-                                        |
-                                        Fuzzy WP: <strong>{{ number_format($crop['P_WP'], 3) }}</strong>
+                                    <div class="scores-line" style="margin-top:2px;display:flex;flex-wrap:wrap;gap:2px 6px;">
+                                        <span style="white-space:nowrap;">TOPSIS: <strong>{{ number_format($crop['V_TOPSIS'], 3) }}</strong></span>
+                                        <span style="color:var(--border-strong);">|</span>
+                                        <span style="white-space:nowrap;">Fuzzy WP: <strong>{{ number_format($crop['P_WP'], 3) }}</strong></span>
                                     </div>
                                 </div>
                                 <button
@@ -1162,15 +1233,39 @@
 
         @if ($recentHistories->isNotEmpty())
             <section class="history-card no-print" aria-label="Riwayat Rekomendasi Terakhir">
-                <div style="font-size:13px;font-weight:700;color:var(--text-main);">Riwayat Analisis Terakhir</div>
+                <div class="history-header">
+                    <div style="font-size:14px;font-weight:700;color:var(--text-main);">Riwayat Analisis Terakhir</div>
+                    <span class="history-count">{{ $recentHistories->count() }} terbaru</span>
+                </div>
                 <div class="history-list">
                     @foreach ($recentHistories as $item)
+                        @php
+                            $fmt = static fn (float $v): string => rtrim(rtrim(number_format($v, 2, '.', ''), '0'), '.');
+                            $thumbPath = file_exists(public_path("images/crops/{$item->top1_wp_label}.jpg"))
+                                ? "/images/crops/{$item->top1_wp_label}.jpg"
+                                : '/images/crops/fallback.svg';
+                        @endphp
                         <a href="{{ route('home', ['history' => $item->id]) }}" class="history-chip">
-                            <strong>{{ $item->top1_wp_nama_id }}</strong>
-                            <span style="color:var(--text-muted);">
-                                (N:{{ $item->n }}, P:{{ $item->p }}, K:{{ $item->k }}, pH:{{ $item->ph }})
-                            </span>
-                            <span class="badge {{ $item->agreement_status === 'Sepakat' ? 'badge-agreed' : 'badge-diff' }}" style="padding:1px 7px;font-size:11px;">
+                            <div class="history-left">
+                                <img
+                                    src="{{ $thumbPath }}"
+                                    onerror="this.onerror=null;this.src='/images/crops/fallback.svg';"
+                                    alt="{{ $item->top1_wp_nama_id }}"
+                                    class="history-thumb"
+                                >
+                                <div class="history-meta">
+                                    <div class="history-title-row">
+                                        <span class="history-crop">{{ $item->top1_wp_nama_id }}</span>
+                                        @if ($item->created_at)
+                                            <span class="history-time">{{ $item->created_at->format('d M H:i') }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="history-params">
+                                        N:{{ $fmt($item->n) }} · P:{{ $fmt($item->p) }} · K:{{ $fmt($item->k) }} · pH:{{ $fmt($item->ph) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="badge {{ $item->agreement_status === 'Sepakat' ? 'badge-agreed' : 'badge-diff' }}" style="padding:2px 8px;font-size:11px;flex-shrink:0;">
                                 {{ $item->agreement_status }}
                             </span>
                         </a>
