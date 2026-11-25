@@ -1,0 +1,500 @@
+[
+  {
+    "kasus": "Kasus_1",
+    "input": {
+      "N": 68.0,
+      "P": 58.0,
+      "K": 38.0,
+      "temperature": 23.22397386,
+      "humidity": 83.03322691,
+      "ph": 6.336253525,
+      "rainfall": 221.2091958
+    },
+    "rekomendasi_utama_wp": "rice",
+    "top1_topsis": "rice",
+    "top5_topsis": [
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "V_TOPSIS": 0.802816330596516,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "V_TOPSIS": 0.4349121201879272,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "V_TOPSIS": 0.43477069266420926,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A10",
+        "Tanaman": "pomegranate",
+        "V_TOPSIS": 0.29024595990982255,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A14",
+        "Tanaman": "watermelon",
+        "V_TOPSIS": 0.26852984653036854,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "P_WP": 0.7345649328377495,
+        "lnP": -0.3084768831398145,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "P_WP": 0.23729632293821348,
+        "lnP": -1.438445611074661,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "P_WP": 0.008636969783253744,
+        "lnP": -4.751703477213468,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "P_WP": 0.0024835443805176372,
+        "lnP": -5.998068553426493,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A19",
+        "Tanaman": "coconut",
+        "P_WP": 0.002463750629906575,
+        "lnP": -6.006070443827534,
+        "Rank_WP": 5
+      }
+    ]
+  },
+  {
+    "kasus": "Kasus_2",
+    "input": {
+      "N": 83.0,
+      "P": 60.0,
+      "K": 36.0,
+      "temperature": 25.59704938,
+      "humidity": 80.14509262,
+      "ph": 6.903985986,
+      "rainfall": 200.834898
+    },
+    "rekomendasi_utama_wp": "jute",
+    "top1_topsis": "jute",
+    "top5_topsis": [
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "V_TOPSIS": 0.6055325359074905,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "V_TOPSIS": 0.5888350795411589,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "V_TOPSIS": 0.4685637491723492,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A19",
+        "Tanaman": "coconut",
+        "V_TOPSIS": 0.4431631335768183,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A20",
+        "Tanaman": "cotton",
+        "V_TOPSIS": 0.39276917738979666,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "P_WP": 0.4694575628627108,
+        "lnP": -0.7561773723579035,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "P_WP": 0.44608219930433896,
+        "lnP": -0.8072520405708958,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "P_WP": 0.02852143908373024,
+        "lnP": -3.5570992259527223,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "P_WP": 0.004103973925692163,
+        "lnP": -5.495799524522701,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "P_WP": 0.0010131617280038476,
+        "lnP": -6.894679413937625,
+        "Rank_WP": 5
+      }
+    ]
+  },
+  {
+    "kasus": "Kasus_3",
+    "input": {
+      "N": 28.0,
+      "P": 58.0,
+      "K": 24.0,
+      "temperature": 19.72702528,
+      "humidity": 18.28173015,
+      "ph": 5.748190462999999,
+      "rainfall": 143.7630894
+    },
+    "rekomendasi_utama_wp": "kidneybeans",
+    "top1_topsis": "chickpea",
+    "top5_topsis": [
+      {
+        "Kode": "A3",
+        "Tanaman": "chickpea",
+        "V_TOPSIS": 0.569658265258922,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A4",
+        "Tanaman": "kidneybeans",
+        "V_TOPSIS": 0.48673445273756233,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "V_TOPSIS": 0.42936913986790665,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "V_TOPSIS": 0.41901148158718243,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "V_TOPSIS": 0.32715260437786653,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A4",
+        "Tanaman": "kidneybeans",
+        "P_WP": 0.46500912420291174,
+        "lnP": -0.7656982516455428,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "P_WP": 0.3227628743776063,
+        "lnP": -1.1308373604224307,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A2",
+        "Tanaman": "maize",
+        "P_WP": 0.0006981591044918405,
+        "lnP": -7.2670635377789985,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A6",
+        "Tanaman": "mothbeans",
+        "P_WP": 0.00030766522033368434,
+        "lnP": -8.086498313114522,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A19",
+        "Tanaman": "coconut",
+        "P_WP": 0.000305213192754026,
+        "lnP": -8.094500032902284,
+        "Rank_WP": 5
+      }
+    ]
+  },
+  {
+    "kasus": "Kasus_4",
+    "input": {
+      "N": 25.0,
+      "P": 71.0,
+      "K": 24.0,
+      "temperature": 28.49538735,
+      "humidity": 60.44848407,
+      "ph": 7.187721817999999,
+      "rainfall": 74.91559514
+    },
+    "rekomendasi_utama_wp": "blackgram",
+    "top1_topsis": "maize",
+    "top5_topsis": [
+      {
+        "Kode": "A2",
+        "Tanaman": "maize",
+        "V_TOPSIS": 0.6238667294184586,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "V_TOPSIS": 0.5026395957571907,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "V_TOPSIS": 0.4983991845953903,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A6",
+        "Tanaman": "mothbeans",
+        "V_TOPSIS": 0.4830478135302357,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A3",
+        "Tanaman": "chickpea",
+        "V_TOPSIS": 0.4377461687183991,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A8",
+        "Tanaman": "blackgram",
+        "P_WP": 0.3948433901477229,
+        "lnP": -0.9292660733389211,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "P_WP": 0.37224781065360396,
+        "lnP": -0.9881954888225433,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A6",
+        "Tanaman": "mothbeans",
+        "P_WP": 0.2518367258835896,
+        "lnP": -1.378974314617511,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A2",
+        "Tanaman": "maize",
+        "P_WP": 0.10787138786809018,
+        "lnP": -2.2268156145601092,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A9",
+        "Tanaman": "lentil",
+        "P_WP": 0.02846830538009281,
+        "lnP": -3.558963902467169,
+        "Rank_WP": 5
+      }
+    ]
+  },
+  {
+    "kasus": "Kasus_5",
+    "input": {
+      "N": 107.0,
+      "P": 21.0,
+      "K": 26.0,
+      "temperature": 26.45288458,
+      "humidity": 55.32222678,
+      "ph": 7.235070264,
+      "rainfall": 144.68613359999995
+    },
+    "rekomendasi_utama_wp": "coffee",
+    "top1_topsis": "coffee",
+    "top5_topsis": [
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "V_TOPSIS": 0.8517791406067251,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "V_TOPSIS": 0.5979694999497199,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A6",
+        "Tanaman": "mothbeans",
+        "V_TOPSIS": 0.4670862659163836,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A19",
+        "Tanaman": "coconut",
+        "V_TOPSIS": 0.423699469645124,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "V_TOPSIS": 0.39301051603021037,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "P_WP": 0.7118904219960377,
+        "lnP": -0.33983128110520006,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A2",
+        "Tanaman": "maize",
+        "P_WP": 0.022838110155675183,
+        "lnP": -3.779324640363968,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "P_WP": 0.003613933822564105,
+        "lnP": -5.622958398389799,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A5",
+        "Tanaman": "pigeonpeas",
+        "P_WP": 0.003367196945947646,
+        "lnP": -5.693674647508905,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A19",
+        "Tanaman": "coconut",
+        "P_WP": 0.0005299735965278755,
+        "lnP": -7.542683370530991,
+        "Rank_WP": 5
+      }
+    ]
+  },
+  {
+    "kasus": "Kasus_Sistem",
+    "input": {
+      "N": 90.0,
+      "P": 42.0,
+      "K": 43.0,
+      "temperature": 28.07857142857143,
+      "humidity": 77.0,
+      "ph": 6.5,
+      "rainfall": 158.4
+    },
+    "rekomendasi_utama_wp": "jute",
+    "top1_topsis": "jute",
+    "top5_topsis": [
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "V_TOPSIS": 0.7874393223220434,
+        "Rank_TOPSIS": 1
+      },
+      {
+        "Kode": "A20",
+        "Tanaman": "cotton",
+        "V_TOPSIS": 0.4428811999747067,
+        "Rank_TOPSIS": 2
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "V_TOPSIS": 0.3810352432762796,
+        "Rank_TOPSIS": 3
+      },
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "V_TOPSIS": 0.37994689754679956,
+        "Rank_TOPSIS": 4
+      },
+      {
+        "Kode": "A11",
+        "Tanaman": "banana",
+        "V_TOPSIS": 0.3641896538189088,
+        "Rank_TOPSIS": 5
+      }
+    ],
+    "top5_wp": [
+      {
+        "Kode": "A21",
+        "Tanaman": "jute",
+        "P_WP": 0.5565199471716273,
+        "lnP": -0.5860522649347443,
+        "Rank_WP": 1
+      },
+      {
+        "Kode": "A1",
+        "Tanaman": "rice",
+        "P_WP": 0.08833585704231381,
+        "lnP": -2.4266091717818026,
+        "Rank_WP": 2
+      },
+      {
+        "Kode": "A22",
+        "Tanaman": "coffee",
+        "P_WP": 0.05541892530397973,
+        "lnP": -2.8928341315797943,
+        "Rank_WP": 3
+      },
+      {
+        "Kode": "A18",
+        "Tanaman": "papaya",
+        "P_WP": 0.0023394371783606238,
+        "lnP": -6.057844900610708,
+        "Rank_WP": 4
+      },
+      {
+        "Kode": "A11",
+        "Tanaman": "banana",
+        "P_WP": 0.001641613539895339,
+        "lnP": -6.412075655034911,
+        "Rank_WP": 5
+      }
+    ]
+  }
+]
