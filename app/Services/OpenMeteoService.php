@@ -41,7 +41,6 @@ class OpenMeteoService
                     'daily' => 'temperature_2m_mean,relative_humidity_2m_mean,precipitation_sum',
                     'past_days' => self::PAST_DAYS,
                     'forecast_days' => self::FORECAST_DAYS,
-                    'timezone' => 'auto',
                 ]);
         } catch (Throwable $e) {
             throw new WeatherFetchException(
