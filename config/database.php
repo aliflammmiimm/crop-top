@@ -60,7 +60,16 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA') ?: (
+                    ((string) env('DB_PORT', '3306') === '4000' || env('VERCEL'))
+                        ? collect([
+                            base_path('certs/isrgrootx1.pem'),
+                            '/etc/ssl/certs/ca-certificates.crt',
+                            '/etc/ssl/certs/ca-bundle.crt',
+                            '/etc/pki/tls/certs/ca-bundle.crt',
+                        ])->first(static fn (string $path): bool => file_exists($path))
+                        : null
+                ),
             ]) : [],
         ],
 
@@ -80,7 +89,16 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA') ?: (
+                    ((string) env('DB_PORT', '3306') === '4000' || env('VERCEL'))
+                        ? collect([
+                            base_path('certs/isrgrootx1.pem'),
+                            '/etc/ssl/certs/ca-certificates.crt',
+                            '/etc/ssl/certs/ca-bundle.crt',
+                            '/etc/pki/tls/certs/ca-bundle.crt',
+                        ])->first(static fn (string $path): bool => file_exists($path))
+                        : null
+                ),
             ]) : [],
         ],
 

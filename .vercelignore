@@ -1,0 +1,9 @@
+/research
+/tests
+/node_modules
+.env
+.env.backup
+.env.production
+/storage/*.key
+/storage/logs/*.log
+/storage/pail
