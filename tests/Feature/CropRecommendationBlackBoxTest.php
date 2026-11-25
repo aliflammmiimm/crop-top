@@ -495,7 +495,8 @@ class CropRecommendationBlackBoxTest extends TestCase
         $this->get('/?history='.$history->id)
             ->assertOk()
             ->assertSee('Rami (Jute)')
-            ->assertSee('Sepakat');
+            ->assertSee('Sepakat')
+            ->assertSee('data-iso-time=', false);
 
         // Verify fallback SVG when a crop photo does not exist
         $tempPhoto = public_path('images/crops/jute.jpg');

@@ -1257,7 +1257,10 @@
                                     <div class="history-title-row">
                                         <span class="history-crop">{{ $item->top1_wp_nama_id }}</span>
                                         @if ($item->created_at)
-                                            <span class="history-time">{{ $item->created_at->format('d M H:i') }}</span>
+                                            <span
+                                                class="history-time"
+                                                data-iso-time="{{ $item->created_at->copy()->utc()->toIso8601String() }}"
+                                            >{{ $item->created_at->copy()->timezone('Asia/Makassar')->format('d M H:i') }}</span>
                                         @endif
                                     </div>
                                     <div class="history-params">
@@ -1626,6 +1629,15 @@
                 modal.addEventListener('click', function (e) {
                     if (e.target === modal) closeModal(modal);
                 });
+            });
+
+            document.querySelectorAll('[data-iso-time]').forEach(function (el) {
+                const dt = new Date(el.getAttribute('data-iso-time'));
+                if (!Number.isNaN(dt.getTime())) {
+                    const datePart = dt.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
+                    const timePart = dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false }).replace('.', ':');
+                    el.textContent = datePart + ' ' + timePart;
+                }
             });
         })();
     </script>
