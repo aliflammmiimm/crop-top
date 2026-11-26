@@ -1047,22 +1047,34 @@
                                 <span class="weather-value" id="weather-temp-val">
                                     {{ $result ? number_format($result['weather']['temperature'], 2).' °C' : '-- °C' }}
                                 </span>
+                                <span style="font-size:10px;color:var(--text-soft);display:block;margin-top:1px;">Rata-rata 14 hari</span>
                             </div>
                             <div class="weather-pill">
                                 <span class="weather-label">Kelembapan 14h</span>
                                 <span class="weather-value" id="weather-hum-val">
                                     {{ $result ? number_format($result['weather']['humidity'], 2).' %' : '-- %' }}
                                 </span>
+                                <span style="font-size:10px;color:var(--text-soft);display:block;margin-top:1px;">Rata-rata 14 hari</span>
                             </div>
                             <div class="weather-pill">
                                 <span class="weather-label">Curah Hujan 30h</span>
                                 <span class="weather-value" id="weather-rain-val">
                                     {{ $result ? number_format($result['weather']['rainfall'], 2).' mm' : '-- mm' }}
                                 </span>
+                                <span style="font-size:10px;color:var(--text-soft);display:block;margin-top:1px;">Total 30 hari</span>
                             </div>
                         </div>
+                        @php
+                            $currentWeather = $result['weather']['current'] ?? null;
+                        @endphp
                         <span id="weather-preview-status" class="field-hint">
-                            {{ $result ? 'Data cuaca Open-Meteo siap digunakan untuk perhitungan.' : 'Isi koordinat Lintang & Bujur atau gunakan GPS untuk memuat data cuaca.' }}
+                            @if ($currentWeather)
+                                Cuaca sesaat sekarang: {{ number_format($currentWeather['temperature'], 1) }} °C · Kelembapan {{ number_format($currentWeather['humidity'], 0) }}% · Hujan {{ number_format($currentWeather['rainfall'], 1) }} mm (SPK memakai agregasi 14 &amp; 30 hari di atas).
+                            @elseif ($result)
+                                Suhu &amp; kelembapan adalah rata-rata 14 hari (7h lalu + 7h prakiraan); curah hujan adalah total 30 hari.
+                            @else
+                                Isi koordinat Lintang &amp; Bujur atau gunakan GPS untuk memuat data agregasi cuaca (rata-rata 14h &amp; total 30h).
+                            @endif
                         </span>
                     </div>
 
@@ -1454,7 +1466,7 @@
                         weatherHumEl.textContent = data.humidity_formatted;
                         weatherRainEl.textContent = data.rainfall_formatted;
                         if (weatherStatusEl) {
-                            weatherStatusEl.textContent = 'Data cuaca Open-Meteo siap digunakan untuk perhitungan.';
+                            weatherStatusEl.textContent = data.current_summary || 'Suhu & kelembapan adalah rata-rata 14 hari (7h lalu + 7h prakiraan); curah hujan adalah total 30 hari.';
                         }
                     })
                     .catch(function (err) {

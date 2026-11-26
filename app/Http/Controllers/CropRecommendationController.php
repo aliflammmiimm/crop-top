@@ -76,10 +76,22 @@ class CropRecommendationController extends Controller
             ], 502);
         }
 
+        $current = $weather['current'] ?? null;
+        $currentSummary = $current !== null
+            ? sprintf(
+                'Cuaca sesaat sekarang: %.1f °C · Kelembapan %.0f%% · Hujan %.1f mm (SPK memakai agregasi 14 & 30 hari di atas).',
+                $current['temperature'],
+                $current['humidity'],
+                $current['rainfall']
+            )
+            : 'Suhu & kelembapan adalah rata-rata 14 hari (7h lalu + 7h prakiraan); curah hujan adalah total 30 hari.';
+
         return response()->json([
             'temperature' => $weather['temperature'],
             'humidity' => $weather['humidity'],
             'rainfall' => $weather['rainfall'],
+            'current' => $current,
+            'current_summary' => $currentSummary,
             'temperature_formatted' => number_format($weather['temperature'], 2).' °C',
             'humidity_formatted' => number_format($weather['humidity'], 2).' %',
             'rainfall_formatted' => number_format($weather['rainfall'], 2).' mm',
@@ -113,6 +125,7 @@ class CropRecommendationController extends Controller
         ];
 
         $result = $this->calculator->calculate($fullInput);
+        $result['weather']['current'] = $weather['current'] ?? null;
         $result['location'] = [
             'latitude' => $latitude,
             'longitude' => $longitude,

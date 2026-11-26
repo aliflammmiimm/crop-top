@@ -38,6 +38,7 @@ class OpenMeteoService
                 ->get(self::ENDPOINT, [
                     'latitude' => $latitude,
                     'longitude' => $longitude,
+                    'current' => 'temperature_2m,relative_humidity_2m,precipitation',
                     'daily' => 'temperature_2m_mean,relative_humidity_2m_mean,precipitation_sum',
                     'past_days' => self::PAST_DAYS,
                     'forecast_days' => self::FORECAST_DAYS,
@@ -91,10 +92,28 @@ class OpenMeteoService
         $avgHumidity = $this->calculateMean($humidityWindow, 'kelembapan (relative_humidity_2m_mean)');
         $totalRainfall = $this->calculateSum($rainfallWindow, 'curah hujan (precipitation_sum)');
 
+        $current = null;
+        if (isset($payload['current']) && is_array($payload['current'])) {
+            $curr = $payload['current'];
+            if (
+                isset($curr['temperature_2m'], $curr['relative_humidity_2m'], $curr['precipitation'])
+                && is_numeric($curr['temperature_2m'])
+                && is_numeric($curr['relative_humidity_2m'])
+                && is_numeric($curr['precipitation'])
+            ) {
+                $current = [
+                    'temperature' => (float) $curr['temperature_2m'],
+                    'humidity' => (float) $curr['relative_humidity_2m'],
+                    'rainfall' => (float) $curr['precipitation'],
+                ];
+            }
+        }
+
         return [
             'temperature' => $avgTemp,
             'humidity' => $avgHumidity,
             'rainfall' => $totalRainfall,
+            'current' => $current,
             'window_n' => self::WINDOW_N,
             'window_m' => self::WINDOW_M,
         ];
