@@ -95,4 +95,32 @@ class OpenMeteoServiceTest extends TestCase
 
         (new OpenMeteoService)->fetchAggregatedWeather(-7.2504, 112.7688);
     }
+
+    public function test_it_tolerates_trailing_forecast_horizon_null_on_day_30(): void
+    {
+        $temps = array_fill(0, 29, 27.5);
+        $temps[] = null;
+
+        $humidities = array_fill(0, 29, 85.0);
+        $humidities[] = null;
+
+        $rainfalls = array_fill(0, 29, 10.0);
+        $rainfalls[] = null;
+
+        Http::fake([
+            'api.open-meteo.com/*' => Http::response([
+                'daily' => [
+                    'temperature_2m_mean' => $temps,
+                    'relative_humidity_2m_mean' => $humidities,
+                    'precipitation_sum' => $rainfalls,
+                ],
+            ], 200),
+        ]);
+
+        $result = (new OpenMeteoService)->fetchAggregatedWeather(-5.1679, 119.4336);
+
+        $this->assertEqualsWithDelta(27.5, $result['temperature'], 1e-9);
+        $this->assertEqualsWithDelta(85.0, $result['humidity'], 1e-9);
+        $this->assertEqualsWithDelta(300.0, $result['rainfall'], 1e-9);
+    }
 }

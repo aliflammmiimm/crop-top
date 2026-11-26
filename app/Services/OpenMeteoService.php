@@ -131,16 +131,43 @@ class OpenMeteoService
             throw new WeatherFetchException("Data {$label} tidak mencukupi 30 hari.");
         }
 
+        // Open-Meteo's 16th forecast day (trailing index 28..29) can legitimately be null
+        // between model runs. All earlier days (0..27) must remain complete and numeric.
         $sum = 0.0;
-        foreach ($values as $value) {
+        $validCount = 0;
+        $trailingNull = false;
+
+        foreach ($values as $idx => $value) {
             if ($value === null || ! is_numeric($value)) {
+                if ($idx >= self::WINDOW_M - 2 && $value === null) {
+                    $trailingNull = true;
+
+                    continue;
+                }
+
                 throw new WeatherFetchException(
                     "Data {$label} dari Open-Meteo tidak lengkap (mengandung nilai kosong). Perhitungan tidak dapat dilanjutkan."
                 );
             }
+
+            if ($trailingNull) {
+                throw new WeatherFetchException(
+                    "Data {$label} dari Open-Meteo tidak lengkap (mengandung nilai kosong). Perhitungan tidak dapat dilanjutkan."
+                );
+            }
+
             $sum += (float) $value;
+            $validCount++;
         }
 
-        return $sum;
+        if ($validCount === 0) {
+            throw new WeatherFetchException(
+                "Data {$label} dari Open-Meteo tidak lengkap (mengandung nilai kosong). Perhitungan tidak dapat dilanjutkan."
+            );
+        }
+
+        return $validCount === self::WINDOW_M
+            ? $sum
+            : ($sum / $validCount) * self::WINDOW_M;
     }
 }
